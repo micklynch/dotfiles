@@ -7,3 +7,5 @@ Files are for:
  * Midnight Commander
 
 Configuration guide to-be-written.
+
+Plugin Manager needs to be installed.

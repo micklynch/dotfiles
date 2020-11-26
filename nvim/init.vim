@@ -15,6 +15,7 @@ Plug 'junegunn/vim-journal'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'nightsense/forgotten'
 Plug 'zaki/zazen'
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 " Aethetics - Additional
 Plug 'nightsense/nemo'
@@ -48,8 +49,8 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'metakirby5/codi.vim'
 Plug 'dkarter/bullets.vim'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
+"Plug 'HerringtonDarkholme/yats.vim'
+"Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
 " Entertainment
 "Plug 'ryanss/vim-hackernews'
@@ -85,7 +86,7 @@ set wrap breakindent
 set encoding=utf-8
 set number
 set title
-set relativenumber
+set number norelativenumber
 
 "" Plugin Configurations
 
@@ -98,7 +99,7 @@ let g:NERDTreeDirArrowCollapsible = '↡'
 let g:airline_powerline_fonts = 1
 let g:airline_section_z = ' %{strftime("%-I:%M %p")}'
 let g:airline_section_warning = ''
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " Neovim :Terminal
 tmap <Esc> <C-\><C-n>
@@ -210,7 +211,10 @@ function! ColorZazen()
 endfunction
 
 """ Custom Mappings
-
+" Copy and Paste
+vnoremap <C-c> "*y :let @+=@*<CR>
+map <C-p> "+P
+" Leader Key is spacebar
 let mapleader=" "
 nmap <leader>q :NERDTreeToggle<CR>
 nmap \ <leader>q

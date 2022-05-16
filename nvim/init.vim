@@ -61,7 +61,7 @@ let g:python3_host_prog = expand('/usr/bin/python3')
 
 """ Coloring
 syntax on
-color dracula
+color forgotten-dark
 highlight Pmenu guibg=white guifg=black gui=bold
 highlight Comment gui=bold
 highlight Normal gui=none

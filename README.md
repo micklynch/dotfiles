@@ -1,10 +1,11 @@
 # Mick's Dot Files
-This is a private repo to hold my dotfiles for Manjaro. 
+This is a private repo to hold my dotfiles. 
 
 Files are for:
  * bashrc (using oh-my-bash)
  * nvim (with associated plugins)
  * Midnight Commander
+ * tmux
 
 Configuration guide to-be-written.
 

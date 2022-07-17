@@ -59,6 +59,9 @@ call plug#end()
 """ Python3 VirtualEnv
 let g:python3_host_prog = expand('/usr/bin/python3')
 
+""" Turn off conceal when editing https://github.com/preservim/vim-markdown/issues/28
+let g:indentLine_concealcursor = "nc"
+
 """ Coloring
 syntax on
 color forgotten-dark

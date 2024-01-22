@@ -1,0 +1,23 @@
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+[fetch]
+	prune = true
+[diff]
+	colorMoved = zebra
+    tool = nvimdiff
+[init]
+    defaultBranch = main
+[merge]
+    tool = nvimdiff
+[mergetool "nvimdiff"]
+    path = nvim
+    cmd = nvim -d "$LOCAL" "$REMOTE"
+[difftool "nvimdiff"]
+    path = nvim
+    cmd = nvim -d "$LOCAL" "$REMOTE"
+[difftool]
+    prompt = false
+[alias]
+    s = difftool HEAD^ HEAD

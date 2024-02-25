@@ -35,3 +35,5 @@ Here are a list of useful commands that will help:
  * `<leader key> + w` - show all sessions with windows
  * `<leader key> + z` - zoom current pane to take up the entire window
  * `<leader key> + d` - disconnect from tmux
+
+More details coming.

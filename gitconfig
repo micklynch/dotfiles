@@ -1,3 +1,7 @@
+[user]
+    # IMPORTANT: Set your name and email
+    name = Your Name
+    email = your@email.com
 [pull]
 	rebase = true
 [rebase]
@@ -9,15 +13,25 @@
     tool = nvimdiff
 [init]
     defaultBranch = main
+[core]
+    # Set nvim as your default editor
+    editor = nvim
 [merge]
     tool = nvimdiff
 [mergetool "nvimdiff"]
-    path = nvim
-    cmd = nvim -d "$LOCAL" "$REMOTE"
+    # Command for a 3-way merge in nvim
+    cmd = nvim -d -c 'wincmd J' "$LOCAL" "$REMOTE" "$MERGED"
 [difftool "nvimdiff"]
     path = nvim
     cmd = nvim -d "$LOCAL" "$REMOTE"
 [difftool]
     prompt = false
 [alias]
-    s = difftool HEAD^ HEAD
+    # More useful aliases
+    diffheads = difftool HEAD^ HEAD
+    s = status -s
+    st = status
+    co = checkout
+    br = branch
+    ci = commit
+    lg = log --oneline --graph --decorate --all

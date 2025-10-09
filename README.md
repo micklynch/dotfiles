@@ -65,15 +65,62 @@ Powerful terminal file manager configuration:
 - Modern terminal with 256-color support
 - Git, Neovim, Tmux, Midnight Commander installed
 
-### Automated Setup
-```bash
-# Clone repository
-git clone https://github.com/yourusername/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
+### Automated Setup with setup.sh
 
-# Run setup script (create one if needed)
-# ./setup.sh  # Optional: Create a setup script for automation
-```
+> ⚠️ **⚠️ WARNING: AUTOMATED INSTALLATION SCRIPT ⚠️**
+>
+> **READ THIS SECTION CAREFULLY BEFORE PROCEEDING**
+>
+> The `setup.sh` script automates the complete installation and configuration of all applications in this dotfiles repository. **This script makes significant changes to your system** and should only be run if you understand and accept these changes.
+>
+> **WHAT THE SCRIPT DOES:**
+> - Installs system packages via your package manager (brew, apt, dnf, yum, pacman, zypper)
+> - Installs development tools (git, neovim, tmux, mc, fzf, ripgrep, curl, python3)
+> - Downloads and executes external scripts from the internet
+> - Modifies or creates configuration files in your home directory
+> - Creates symlinks that may replace existing configurations
+> - Installs plugins and external tools
+>
+> **SUPPORTED SYSTEMS:**
+> - ✅ **macOS** (tested on recent versions with Homebrew)
+> - ✅ **Ubuntu** (tested on 18.04, 20.04, 22.04, 24.04)
+> - ✅ **Fedora/CentOS/RHEL** (basic testing with dnf/yum)
+> - ✅ **Arch Linux** (basic testing with pacman)
+> - ✅ **openSUSE** (basic testing with zypper)
+>
+> **UNTESTED SYSTEMS:**
+> - ❌ Other Linux distributions (may fail or cause issues)
+> - ❌ Windows Subsystem for Linux (WSL)
+> - ❌ Container environments (Docker, etc.)
+> - ❌ Corporate/managed systems with restricted permissions
+>
+> **🚨 RUN AT YOUR OWN RISK 🚨**
+>
+> **IF YOU RUN THIS ON AN UNTESTED SYSTEM:**
+> - Package names may be incorrect, causing installation failures
+> - Configuration paths may be incompatible
+> - The script may partially complete, leaving your system in an inconsistent state
+> - Existing configurations may be overwritten without proper backups
+> - Security features may not work correctly on unknown systems
+>
+> **RECOMMENDATIONS:**
+> 1. **Backup your system** before running this script
+> 2. **Review the script** thoroughly to understand what it does
+> 3. **Test on a virtual machine** or non-critical system first
+> 4. **Run with manual installation** if you're unsure about automation
+>
+> ```bash
+> # Clone repository
+> git clone https://github.com/yourusername/dotfiles.git ~/.dotfiles
+> cd ~/.dotfiles
+>
+> # ⚠️ EXTREME CAUTION: This will install and configure everything automatically
+> # 🚨 READ THE WARNINGS ABOVE BEFORE RUNNING 🚨
+> ./setup.sh
+>
+> # For automated/CI environments (skips all confirmations):
+> # SKIP_CONFIRMATIONS=yes ./setup.sh
+> ```
 
 ### Manual Installation
 

@@ -1,6 +1,30 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# ⚠️ ⚠️ ⚠️ WARNING: AUTOMATED SYSTEM CONFIGURATION SCRIPT ⚠️ ⚠️ ⚠️
+#
+# 🚨 READ THIS BEFORE RUNNING 🚨
+#
+# This script will make SIGNIFICANT changes to your system:
+#   • Install system packages via package manager
+#   • Download and execute external scripts from internet
+#   • Modify/create configuration files in your home directory
+#   • Replace existing configurations with symlinks
+#   • Install development tools and plugins
+#
+# SUPPORTED SYSTEMS: macOS, Ubuntu, Fedora, Arch, openSUSE
+# UNTESTED SYSTEMS: May fail or damage your system
+#
+# By running this script, you acknowledge that you:
+#   ✅ Have backed up important data
+#   ✅ Understand what this script does
+#   ✅ Accept responsibility for any system changes
+#   ✅ Are running this on a supported system or accept the risks
+#
+# For manual installation alternatives, see README.md
+#
+# ⚠️ ⚠️ ⚠️ PROCEED WITH EXTREME CAUTION ⚠️ ⚠️ ⚠️
+
 # Cross-platform setup script for Mick's Dotfiles
 # - Supports macOS and Linux (apt/dnf/yum/pacman/zypper, or Homebrew if present)
 # - Installs: git, neovim, tmux, mc, fzf, ripgrep, curl, python3(+venv)
@@ -494,17 +518,63 @@ setup_mc() {
 }
 
 main() {
-  log_step "Mick's Dotfiles Setup Script"
+  log_step "⚠️  MICK'S DOTFILES SETUP SCRIPT ⚠️"
   log_info "Platform: $OS_NAME"
   log_info "Repository: $REPO_DIR"
+
+  # Display system compatibility warning
+  if [[ "$OS_NAME" == "Linux" ]]; then
+    if [[ -f /etc/os-release ]]; then
+      local distro
+      distro="$(grep '^ID=' /etc/os-release | cut -d'=' -f2 | tr -d '"')"
+      case "$distro" in
+        ubuntu|fedora|centos|rhel|arch|opensuse)
+          log_info "✅ Detected supported distribution: $distro"
+          ;;
+        *)
+          log_warn "⚠️  Detected potentially unsupported distribution: $distro"
+          log_warn "   This script may not work correctly on your system."
+          log_warn "   Manual installation is recommended for unsupported systems."
+          ;;
+      esac
+    else
+      log_warn "⚠️  Could not detect Linux distribution"
+      log_warn "   This script may not work correctly on your system."
+    fi
+  elif [[ "$OS_NAME" == "Darwin" ]]; then
+    log_info "✅ Detected supported platform: macOS"
+  else
+    log_warn "⚠️  Detected unsupported platform: $OS_NAME"
+    log_warn "   This script has not been tested on this platform."
+    log_warn "   Manual installation is strongly recommended."
+  fi
+
+  # Extreme warning prompt
+  printf "\n"
+  printf "🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨\n"
+  printf "⚠️  THIS SCRIPT WILL MAKE SIGNIFICANT CHANGES TO YOUR SYSTEM ⚠️\n"
+  printf "   • Install system packages and development tools\n"
+  printf "   • Download and execute scripts from the internet\n"
+  printf "   • Modify or replace configuration files\n"
+  printf "   • Install plugins and external dependencies\n"
+  printf "\n"
+  printf "🚨  RUN AT YOUR OWN RISK - BACKUP YOUR SYSTEM FIRST 🚨\n"
+  printf "🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨\n"
+  printf "\n"
+
+  if ! confirm_action "I understand the risks and want to proceed with the automated setup? [Type 'yes' to continue]"; then
+    log_info "Setup cancelled by user. Smart choice - manual installation is safer!"
+    log_info "See README.md for manual installation instructions."
+    exit 0
+  fi
 
   # Security and system checks
   if [[ "$OS_NAME" == "Darwin" ]]; then
     check_xcode_cli_tools
   fi
 
-  # Show initial confirmation
-  if ! confirm_action "Proceed with dotfiles setup? This will install and configure multiple applications."; then
+  # Additional confirmation before actual installation
+  if ! confirm_action "Final confirmation: Install and configure all dotfiles applications?"; then
     log_info "Setup cancelled by user."
     exit 0
   fi

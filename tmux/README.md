@@ -20,6 +20,8 @@ Uses TPM (Tmux Plugin Manager) with the following plugins:
 - `vim-tmux-navigator` - Seamless navigation between Vim and Tmux panes
 - `catppuccin-tmux` - Modern Catppuccin color scheme (mocha flavor)
 - `tmux-yank` - Enhanced clipboard support for system integration
+- `tmux-resurrect` - Save and restore tmux sessions
+- `tmux-continuum` - Automatic continuous saving of tmux sessions
 
 ### Visual Features
 - **Mouse support**: Click to select panes, drag to resize
@@ -30,6 +32,11 @@ Uses TPM (Tmux Plugin Manager) with the following plugins:
 ### Session Management
 - **Automatic renumbering**: Windows renumber automatically when closed
 - **Current path preservation**: New panes/splits inherit current directory
+
+### Session Persistence
+- **tmux-resurrect**: Manually save and restore complete tmux sessions (panes, windows, layouts)
+- **tmux-continuum**: Automatically restore the last saved session when tmux starts
+- **Pane contents**: Resurrect captures and restores pane contents
 
 ## Installation
 
@@ -51,6 +58,30 @@ Uses TPM (Tmux Plugin Manager) with the following plugins:
 4. Install plugins:
    - Start Tmux: `tmux`
    - Install plugins: `Ctrl-Space I`
+
+## Optional Shell Integration
+
+To automatically attach to existing sessions or restore the last saved session when starting tmux, add the following to your shell configuration (e.g., `~/.zshrc` or `~/.bashrc`):
+
+```bash
+alias ta='tmux attach || tmux'
+
+# Tmux wrapper: attach to existing session or restore last saved session
+t() {
+  if tmux list-sessions 2>/dev/null | grep -q .; then
+    # Sessions exist, attach to the most recently used one
+    tmux attach-session
+  else
+    # No sessions exist, start tmux and restore last saved session
+    tmux new-session -d && tmux run-shell ~/.config/tmux/plugins/tmux-resurrect/scripts/restore.sh && tmux attach-session
+  fi
+}
+
+# Optional: alias 'tmux' to the wrapper function
+alias tmux='t'
+```
+
+This integration works with the `tmux-resurrect` and `tmux-continuum` plugins to provide a seamless session restoration experience.
 
 ## Key Reference
 

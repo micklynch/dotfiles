@@ -41,12 +41,18 @@ Plug 'chrisbra/Colorizer'
 Plug 'KabbAmine/vCoolor.vim'
 Plug 'heavenshell/vim-pydocstring', { 'do': 'make install' }
 Plug 'vim-scripts/loremipsum'
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'metakirby5/codi.vim'
 Plug 'dkarter/bullets.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
+Plug 'epwalsh/obsidian.nvim'
+Plug 'OXY2DEV/markview.nvim'
 "Plug 'HerringtonDarkholme/yats.vim'
 "Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 
@@ -115,11 +121,6 @@ let g:pydocstring_doq_path = '~/.config/nvim/env/bin/doq'
 " Supertab
 let g:SuperTabDefaultCompletionType = "<C-n>"
 
-" Ultisnips
-let g:UltiSnipsExpandTrigger="<C-Space>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<C-x>"
-
 " EasyAlign
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
@@ -151,6 +152,46 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+" completion
+lua << EOF
+local cmp = require('cmp')
+cmp.setup({
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'path' },
+  }),
+})
+
+require("obsidian").setup({
+  workspaces = {
+    {
+      name = "Notes",
+      path = "~/Documents/Notes",
+    },
+  },
+  picker = {
+    name = "telescope.nvim",
+    mappings = {},
+  },
+  completion = {
+    nvim_cmp = true,
+  },
+  new_notes_location = "current_dir",
+  ui = {
+    enable = true,
+    update_debounce = 200,
+    checkboxes = {
+      [" "] = { char = "☐", hl_group = "ObsidianTodo" },
+      ["x"] = { char = "☑", hl_group = "ObsidianDone" },
+      [">"] = { char = "➜", hl_group = "ObsidianRightArrow" },
+      ["~"] = { char = "➜", hl_group = "ObsidianTilde" },
+    },
+  },
+})
+
+require('markview').setup({})
+EOF
 
 """ Filetype-Specific Configurations
 

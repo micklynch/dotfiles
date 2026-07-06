@@ -44,8 +44,19 @@ Uses **vim-plug** as the plugin manager with an extensive plugin ecosystem:
 ## Installation
 
 ### Prerequisites
-1. Install Neovim: https://github.com/neovim/neovim/wiki/Installing-Neovim
-2. Install Python 3 with pip (for Python support)
+1. **Neovim**: https://github.com/neovim/neovim/wiki/Installing-Neovim
+2. **Python 3 + pip**: Required for Python plugin support (`pip install pynvim`)
+3. **Git**: Needed by vim-plug to clone plugins
+4. **curl**: Required for vim-plug installation script
+5. **ripgrep (rg)**: Used by fzf and Telescope for content search (`:Ag`, `:Rg`, Telescope live_grep)
+6. **fzf**: Fuzzy finder binary (installed by the vim plugin, but also available as a standalone package)
+7. **yapf**: Python code formatter (`pip install yapf`)
+8. **doq**: Python docstring generator (`pip install doq`)
+9. **Nerd Font**: Required for vim-devicons to display file type icons
+10. **ccache + C compiler (gcc/clang)**: Needed by Treesitter to compile parsers
+11. **xclip / xsel / wl-clipboard**: System clipboard integration (Linux)
+12. **ctags (optional)**: Recommended for Tagbar code outline navigation
+13. **Node.js (optional)**: Required by some language server plugins
 
 ### Setup Steps
 

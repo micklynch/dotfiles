@@ -48,6 +48,12 @@ Each application directory contains:
 - **Integration**: Works alongside Neovim and Tmux for file management workflows
 - **Claude Guidance**: See `midnight-commander/CLAUDE.md` for file operations and integration patterns
 
+#### Herdr (`herdr/`)
+- **Purpose**: Terminal multiplexer for running multiple AI coding agents side by side
+- **Key Features**: Ctrl-Space prefix (matches Tmux), shift+arrow tab switching, bottom tab bar, symbol status indicators
+- **Integration**: Prefix key and split bindings mirror the Tmux configuration; optional agent integrations (e.g. `herdr integration install claude`)
+- **Setup**: `mkdir -p ~/.config/herdr && cp herdr/config.toml ~/.config/herdr/config.toml` (see `herdr/README.md`)
+
 ## Development Workflow Patterns
 
 ### Typical Development Session
